@@ -140,6 +140,14 @@ jobs:
             done
           done
 
+      - name: Upload results to path
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: results
+          path: /opt/slc_cli/bin/slc-cli/configuration/*
+          if-no-files-found: ignore
+    
       - name: Build firmware
         id: build-firmware
         run: |
