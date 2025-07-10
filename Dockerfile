@@ -13,13 +13,22 @@ RUN \
        yq \
        libgl1 \
        make \
-       default-jre-headless \
+       ca-certificates \
+       apt-transport-https \
        patch \
        python3 \
        python3-pip \
        python3-virtualenv \
        unzip \
        xz-utils
+
+RUN wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | gpg --dearmor | tee /etc/apt/trusted.gpg.d/adoptium.gpg > /dev/null \
+    && echo "deb https://packages.adoptium.net/artifactory/deb $(awk -F= '/^VERSION_CODENAME/{print$2}' /etc/os-release) main" | tee /etc/apt/sources.list.d/adoptium.list
+
+RUN apt update && apt install -y temurin-21-jdk
+
+ENV JAVA_HOME=/usr/lib/jvm/temurin-21-jdk-amd64
+ENV PATH="${JAVA_HOME}/bin:${PATH}"
 
 COPY requirements.txt /tmp/
 
