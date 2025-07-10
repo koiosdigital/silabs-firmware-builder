@@ -22,7 +22,8 @@ RUN \
        unzip \
        xz-utils \
        wget \
-       gpg
+       gpg \ 
+       libglib2.0-0
 
 RUN wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | gpg --dearmor | tee /etc/apt/trusted.gpg.d/adoptium.gpg > /dev/null
 
