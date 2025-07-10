@@ -1,4 +1,4 @@
-name: Anemoi MGM210P Zigbee
+name: Anemoi MGM210P Zigbeed
 device: MGM210PB32JIA
 base_project: src/zigbee_ncp
 filename: "{manifest_name}_{ezsp_version}"
